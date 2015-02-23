@@ -1,0 +1,8 @@
+"use strict";
+var path = require('path');
+
+module.exports = {
+	config: path.resolve(__dirname, 'sequelize-config.js'),
+	'migrations-path': path.resolve(__dirname, 'migrations'),
+	'models-path': path.resolve(__dirname, 'models'),
+};
