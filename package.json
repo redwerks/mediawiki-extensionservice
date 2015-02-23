@@ -1,6 +1,6 @@
 {
   "name": "mediawiki-extensionservice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A service and API that gathers and exposes metadata about MediaWiki extensions.",
   "keywords": [
     "mediawiki",
@@ -30,6 +30,7 @@
     "bluebird": "^2.9.6",
     "byline": "^4.2.1",
     "chalk": "^0.5.1",
+    "debug": "^2.1.1",
     "dotenv": "^0.5.1",
     "event-stream": "^3.2.2",
     "graceful-fs": "^3.0.5",

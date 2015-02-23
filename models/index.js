@@ -1,13 +1,15 @@
 'use strict';
 
-var fs = require('graceful-fs'),
+var debug = require('debug')('sql'),
+	fs = require('graceful-fs'),
 	path = require('path'),
 	Sequelize = require('sequelize'),
 	basename = path.basename(module.filename),
 	sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASS, {
 		host: process.env.DATABASE_HOST,
 		dialect: process.env.DATABASE_TYPE,
-		storage: process.env.DATABASE_STORAGE
+		storage: process.env.DATABASE_STORAGE,
+		logging: debug
 	}),
 	db = {};
 
