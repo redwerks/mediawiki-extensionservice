@@ -1,6 +1,6 @@
 {
   "name": "mediawiki-extensionservice",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A service and API that gathers and exposes metadata about MediaWiki extensions.",
   "keywords": [
     "mediawiki",
