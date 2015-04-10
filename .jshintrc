@@ -13,6 +13,6 @@
   "node": true,
   "laxbreak": true,
   "globals": {
-   "Promise": true
+    "Promise": true
   }
 }
