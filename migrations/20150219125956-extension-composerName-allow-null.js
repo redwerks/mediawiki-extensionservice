@@ -1,19 +1,17 @@
 "use strict";
 module.exports = {
-	up: function(migration, DataTypes, done) {
-		migration
+	up: function(migration, Sequelize) {
+		return migration
 			.changeColumn('Extensions', 'composerName', {
-				type: DataTypes.STRING,
+				type: Sequelize.STRING,
 				allowNull: true
-			})
-			.done(done);
+			});
 	},
-	down: function(migration, DataTypes, done) {
-		migration
+	down: function(migration, Sequelize) {
+		return migration
 			.changeColumn('Extensions', 'composerName', {
-				type: DataTypes.STRING,
+				type: Sequelize.STRING,
 				allowNull: false
-			})
-			.done(done);
+			});
 	}
 };

@@ -1,39 +1,41 @@
 "use strict";
 module.exports = {
-	up: function(migration, DataTypes, done) {
-		migration.createTable("ExtensionFailures", {
-			id: {
-				allowNull: false,
-				autoIncrement: true,
-				primaryKey: true,
-				type: DataTypes.INTEGER
-			},
-			ScanId: {
-				type: DataTypes.INTEGER,
-				references: 'ExtensionScanJobs',
-				referencesKey: 'id',
-				onDelete: 'CASCADE',
-				onUpdate: 'CASCADE'
-			},
-			extid: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-			error: {
-				type: DataTypes.TEXT,
-				allowNull: false
-			},
-			createdAt: {
-				allowNull: false,
-				type: DataTypes.DATE
-			},
-			updatedAt: {
-				allowNull: false,
-				type: DataTypes.DATE
-			}
-		}).done(done);
+	up: function(migration, Sequelize) {
+		return migration.createTable(
+			"ExtensionFailures",
+			{
+				id: {
+					allowNull: false,
+					autoIncrement: true,
+					primaryKey: true,
+					type: Sequelize.INTEGER
+				},
+				ScanId: {
+					type: Sequelize.INTEGER,
+					references: 'ExtensionScanJobs',
+					referencesKey: 'id',
+					onDelete: 'CASCADE',
+					onUpdate: 'CASCADE'
+				},
+				extid: {
+					type: Sequelize.STRING,
+					allowNull: false
+				},
+				error: {
+					type: Sequelize.TEXT,
+					allowNull: false
+				},
+				createdAt: {
+					allowNull: false,
+					type: Sequelize.DATE
+				},
+				updatedAt: {
+					allowNull: false,
+					type: Sequelize.DATE
+				}
+			});
 	},
-	down: function(migration, DataTypes, done) {
-		migration.dropTable("ExtensionFailures").done(done);
+	down: function(migration) {
+		return migration.dropTable("ExtensionFailures");
 	}
 };

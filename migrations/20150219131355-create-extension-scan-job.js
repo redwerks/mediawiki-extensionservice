@@ -1,40 +1,42 @@
 "use strict";
 module.exports = {
-	up: function(migration, DataTypes, done) {
-		migration.createTable("ExtensionScanJobs", {
-			id: {
-				allowNull: false,
-				autoIncrement: true,
-				primaryKey: true,
-				type: DataTypes.INTEGER
-			},
-			startedAt: {
-				type: DataTypes.DATE,
-				allowNull: false
-			},
-			endedAt: {
-				type: DataTypes.DATE,
-				allowNull: true
-			},
-			extensions: {
-				type: DataTypes.INTEGER,
-				allowNull: true
-			},
-			failures: {
-				type: DataTypes.INTEGER,
-				allowNull: true
-			},
-			createdAt: {
-				allowNull: false,
-				type: DataTypes.DATE
-			},
-			updatedAt: {
-				allowNull: false,
-				type: DataTypes.DATE
-			}
-		}).done(done);
+	up: function(migration, Sequelize) {
+		return migration.createTable(
+			"ExtensionScanJobs",
+			{
+				id: {
+					allowNull: false,
+					autoIncrement: true,
+					primaryKey: true,
+					type: Sequelize.INTEGER
+				},
+				startedAt: {
+					type: Sequelize.DATE,
+					allowNull: false
+				},
+				endedAt: {
+					type: Sequelize.DATE,
+					allowNull: true
+				},
+				extensions: {
+					type: Sequelize.INTEGER,
+					allowNull: true
+				},
+				failures: {
+					type: Sequelize.INTEGER,
+					allowNull: true
+				},
+				createdAt: {
+					allowNull: false,
+					type: Sequelize.DATE
+				},
+				updatedAt: {
+					allowNull: false,
+					type: Sequelize.DATE
+				}
+			});
 	},
-	down: function(migration, DataTypes, done) {
-		migration.dropTable("ExtensionScanJobs").done(done);
+	down: function(migration) {
+		return migration.dropTable("ExtensionScanJobs");
 	}
 };

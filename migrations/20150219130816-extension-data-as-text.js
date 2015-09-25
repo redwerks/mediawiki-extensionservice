@@ -1,19 +1,17 @@
 "use strict";
 module.exports = {
-	up: function(migration, DataTypes, done) {
-		migration
+	up: function(migration, Sequelize) {
+		return migration
 			.changeColumn('Extensions', 'data', {
-				type: DataTypes.TEXT,
+				type: Sequelize.TEXT,
 				allowNull: false
-			})
-			.done(done);
+			});
 	},
-	down: function(migration, DataTypes, done) {
-		migration
+	down: function(migration, Sequelize) {
+		return migration
 			.changeColumn('Extensions', 'data', {
-				type: DataTypes.BLOB,
+				type: Sequelize.BLOB,
 				allowNull: false
-			})
-			.done(done);
+			});
 	}
 };

@@ -1,9 +1,9 @@
 "use strict";
 module.exports = {
-	up: function(migration, DataTypes, done) {
-		migration.addIndex('Extensions', ['composerName']).done(done);
+	up: function(migration) {
+		return migration.addIndex('Extensions', ['composerName']);
 	},
-	down: function(migration, DataTypes, done) {
-		migration.removeIndex('Extensions', ['composerName']).done(done);
+	down: function(migration) {
+		return migration.removeIndex('Extensions', ['composerName']);
 	}
 };
