@@ -2,7 +2,7 @@
 require('./lib/check-env');
 var env = process.env.NODE_ENV || 'development';
 
-exports[env] = {
+module.exports = {
 	database: process.env.DATABASE_NAME,
 	username: process.env.DATABASE_USER,
 	password: process.env.DATABASE_PASS,
