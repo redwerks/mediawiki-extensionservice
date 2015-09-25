@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+"use strict";
+var path = require('path'),
+	util = require('util'),
+	nodemon = require('nodemon'),
+	nodeArgs = [],
+	args = process.argv.slice(2);
+
+while ( args.length && /^--debug(-brk)?$/.test(args[0]) ) {
+	nodeArgs.push(args.shift());
+}
+
+nodemon({
+	script: path.join(__dirname, 'www'),
+	nodeArgs: nodeArgs,
+	args: args,
+	verbose: true,
+	env: {
+		DEBUG: 'sql,app',
+		NODE_ENV: process.env.NODE_ENV || "development"
+	},
+	ext: "js",
+	restartable: 'rs',
+	ignore: [
+		'.git', 'storage', 'node_modules', // 'bower_components'
+	]
+}).on('log', function(e) {
+	if ( e.type === 'error') {
+		util.error(e.colour);
+	} else {
+		util.log(e.colour);
+	}
+});

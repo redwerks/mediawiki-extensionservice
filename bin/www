@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+"use strict";
+process.bin = process.title = 'app';
+var Promise = require('bluebird');
+Promise.longStackTraces();
+require('../lib/check-env');
+
+var debug = require('debug')('app'),
+	app = require('../app'),
+	server = app.listen(app.get('port'), function() {
+		debug('Express server listening on port %s [%s]', server.address().port, process.env.NODE_ENV);
+	});

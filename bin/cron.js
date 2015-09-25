@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 process.bin = process.title = 'mediawiki-extensionservice-cron';
-require('../lib/check-env');
 var Promise = require('bluebird');
 Promise.longStackTraces();
+require('../lib/check-env');
 
 // We'll be piping multiple streams into stdout and stderr in parallel so bump up the max listeners
 process.setMaxListeners(20);
@@ -214,7 +214,7 @@ ExtensionScanJob.create({ startedAt: moment().toDate() })
 									return /*Extension.*/findOrInitialize({ where: { extid: extension.id }, defaults: { extid: extension.id } })
 										.spread(function(ext, initialized) {
 											ext.composerName = extension.composerName;
-											ext.data = JSON.stringify(extension);
+											ext.data = extension;
 
 											return ext.save(initialized ? undefined : ['composerName', 'data']);
 										})
