@@ -43,6 +43,7 @@
     "express": "^4.12.0",
     "express-cache-response-directive": "^0.2.0",
     "express-legacy-expires": "^0.1.0",
+    "express-promise-router": "0.0.9",
     "git-cmd": "^0.1.0",
     "graceful-fs": "^3.0.5",
     "helmet": "^0.6.1",
