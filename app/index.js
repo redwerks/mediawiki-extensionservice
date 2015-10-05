@@ -43,14 +43,20 @@ app.use(function(req, res, next) {
 	next();
 });
 
+var root = express.Router();
+app.locals.webroot = (process.env.WEB_PATH || '/').replace(/\/$/, '');
+
 // Serve static files in public/
-app.use(express.static(path.join(__dirname, 'public')));
+root.use(express.static(path.join(__dirname, 'public')));
 
 // Serve the contents of the node_modules we depend on
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
+root.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
 // Routes
-app.use('/', require('../routes'));
+root.use('/', require('../routes'));
+
+// Add root
+app.use(process.env.WEB_PATH || '/', root);
 
 // 404s
 app.use(function(req, res) {

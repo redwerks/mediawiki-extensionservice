@@ -1,5 +1,6 @@
 "use strict";
-var path = require('path'),
+var _ = require('lodash'),
+	path = require('path'),
 	URL = require('url'),
 	tamper = require('tamper'),
 	highlight = require('highlight.js'),
@@ -43,10 +44,15 @@ router.use(tamper(function(req, res) {
 				return body;
 			}
 
-			return jade.renderFile(path.join(__dirname, '../../views/json-preview.jade'), {
-				title: req.method + ' ' + req.url,
-				result: highlight.highlight('json', JSON.stringify(body, null, 2), true).value
-			});
+			return jade.renderFile(path.join(__dirname, '../../views/json-preview.jade'),
+				_.merge(
+					{},
+					req.app.locals,
+					res.locals,
+					{
+						title: req.method + ' ' + req.url,
+						result: highlight.highlight('json', JSON.stringify(body, null, 2), true).value
+					}));
 		};
 	}
 }));
