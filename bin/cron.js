@@ -182,12 +182,6 @@ ExtensionScanJob.create({ startedAt: moment().toDate() })
 										extension.sources.push('git-tag');
 									}
 
-									if ( HEAD && /^refs\/heads\//.test(HEAD) && HEAD !== 'refs/heads/master' ) {
-										// Add support for a custom stable branch
-										extension.stableBranch = HEAD.replace(/^refs\/heads\//, '');
-										extension.sources.push('git-stable');
-									}
-
 									if ( master ) {
 										// Add git master branch support
 										extension.sources.push('git-master');
