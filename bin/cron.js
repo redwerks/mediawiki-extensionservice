@@ -36,6 +36,8 @@ var params = require('nomnom')()
 	ExtensionFailure = models.ExtensionFailure,
 	ExtensionScanJob = models.ExtensionScanJob;
 
+const GERIT_GIT_URL_PATTERN = 'https://gerrit.wikimedia.org/r/%s.git';
+
 ExtensionScanJob.create({ startedAt: moment().toDate() })
 	.then(function(scanJob) {
 		// Fetch extensions
@@ -52,7 +54,7 @@ ExtensionScanJob.create({ startedAt: moment().toDate() })
 						cloned = isCloned.then(function(exists) {
 								if ( !exists ) {
 									return git.clone(ext.name, {
-										url: fmt('https://git.wikimedia.org/git/%s.git', ext.path)
+										url: fmt(GERIT_GIT_URL_PATTERN, ext.path)
 									});
 								}
 							});
@@ -137,7 +139,7 @@ ExtensionScanJob.create({ startedAt: moment().toDate() })
 								.spread(function(i18n, composerData, extensionData, heads, tags, HEAD, master) {
 									extension.name = extension.id;
 
-									extension.repository = fmt('https://git.wikimedia.org/git/%s.git', ext.path);
+									extension.repository = fmt(GERIT_GIT_URL_PATTERN, ext.path);
 
 									if ( extensionData ) {
 										// Extract some data from the extension.json
@@ -212,7 +214,9 @@ ExtensionScanJob.create({ startedAt: moment().toDate() })
 
 											return ext.save(initialized ? undefined : ['composerName', 'data']);
 										})
-										.then(extension);
+										.then(function() {
+											return extension;
+										});
 								});
 						})
 						.catch(function(err) {
