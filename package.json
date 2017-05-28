@@ -27,7 +27,9 @@
     "url": "https://github.com/redwerks/mediawiki-extensionservice/issues"
   },
   "scripts": {
-    "start": "node bin/www"
+    "start": "node bin/www",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bluebird": "^2.9.12",
@@ -46,7 +48,7 @@
     "express-promise-router": "0.0.9",
     "git-cmd": "^0.2.1",
     "graceful-fs": "^4.1.2",
-    "helmet": "^0.12.0",
+    "helmet": "^3.6.1",
     "highlight.js": "^8.4.0",
     "jade": "^1.9.2",
     "lodash": "^3.3.0",
@@ -61,8 +63,10 @@
     "stream-to-array": "^2.0.2",
     "superagent": "^2.0.0",
     "superagent-bluebird-promise": "^2.1.0",
-    "tamper": "^0.1.0"
+    "tamper": "^0.1.0",
+    "snyk": "^1.31.0"
   },
   "devDependencies": {},
-  "private": true
+  "private": true,
+  "snyk": true
 }
